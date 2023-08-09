@@ -1,0 +1,32 @@
+{
+  "name": "express-template",
+  "version": "1.0.0",
+  "description": "A template to build RESTfull API using Node.js and Express.js",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha",
+    "start:prod": "SET nodeEnv=PRODUCTION& node index.js",
+    "start:dev": "SET nodeEnv=DEVELOPMENT& nodemon index.js"
+  },
+  "keywords": [
+    "node.js",
+    "javascript"
+  ],
+  "author": "iHaroon29",
+  "license": "ISC",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.4.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
