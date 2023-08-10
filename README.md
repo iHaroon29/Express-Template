@@ -54,7 +54,7 @@ This template provides a simple and organized starting point for building RESTfu
    npm start
    ```
 
-   Your API will be accessible at `http://localhost:5500`.
+   Your API will be accessible at `http://localhost:${port}`.
 
 ## Project Structure
 
@@ -66,18 +66,23 @@ express-rest-api-template/
 │   ├── example.controller.js
 │   └── ...
 ├── middleware/
-│   ├── errorHandler.js
+│   ├── authenication.middleware.js
 │   └── ...
 ├── routes/
 │   ├── example.route.js
 │   └── ...
+├── test
+|   ├──example.test.js
 ├── app.js
+└── index.js
 └── ...
+
 ```
 
 - `controllers`: Contains your route handlers and business logic.
 - `middleware`: Contains custom middleware, including the error handler.
 - `routes`: Defines your API routes and connects them to controllers.
+- `test`:Contains tests for API end points.
 - `app.js`: Contains express configurations.
 - `index.js`: Main entry point of your HTTP/HTTPS Server.
 
@@ -101,7 +106,11 @@ export default router
 
 ## Middleware
 
-The `middleware` directory contains custom middleware, including an error handler. Feel free to add more middleware as needed.
+The `middleware` directory contains custom middleware, including an isAuthenticated Middleware. Feel free to add more middleware as needed.
+
+## Tests
+
+The `test` directory contains custom tests, Feel free to add more as needed.
 
 ## Contributing
 
@@ -109,7 +118,7 @@ Contributions are welcome! If you find a bug or want to add a feature, feel free
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [ISC License](LICENSE).
 
 ---
 

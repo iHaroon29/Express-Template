@@ -8,6 +8,7 @@ import zlib from 'zlib'
 import { maxSize, corsOptions } from './config/app.config.js'
 import { CustomError } from './error/custom.error.js'
 import exampleRouter from './routes/example.route.js'
+import { isAuthenticated } from './middleware/authentication.middleware.js'
 const app = express()
 
 app.use(cors(corsOptions))
@@ -37,7 +38,7 @@ app.get('/health', async (req, res, next) => {
   }
 })
 
-app.use('/api/v1', exampleRouter)
+app.use('/api/v1', isAuthenticated, exampleRouter)
 
 app.use('*', (req, res, next) => {
   const { errType, message, status } = CustomError.invalidRoute(
