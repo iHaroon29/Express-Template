@@ -6,6 +6,8 @@ import compression from 'compression'
 import morgan from 'morgan'
 import zlib from 'zlib'
 import { maxSize, corsOptions } from './config/app.config.js'
+import { CustomError } from './error/custom.error.js'
+import exampleRouter from './routes/example.route.js'
 const app = express()
 
 app.use(cors(corsOptions))
@@ -35,21 +37,25 @@ app.get('/health', async (req, res, next) => {
   }
 })
 
+app.use('/api/v1', exampleRouter)
+
 app.use('*', (req, res, next) => {
-  return res.status(404).send({
-    message:
-      'Invalid Route, Please Read Readme.md for info on available routes.',
-    errType: 'ROUTE_NOT_FOUND_CLIENT',
-  })
+  const { errType, message, status } = CustomError.invalidRoute(
+    'Invalid Route, Please check README.md for a list of available routes!'
+  )
+  return res.status(status).send({ message, errType })
 })
 
 app.use((err, req, res, next) => {
-  if (err)
-    return res.status(500).send({
-      message: 'Internal Server Error',
-      errorMessage: err.message,
-      errType: 'SERVER_ERROR',
+  if (err) {
+    const { message, status, errType } = CustomError.internalServerError(
+      'Internal Server Error'
+    )
+    return res.status(status).send({
+      message,
+      errType,
     })
+  }
 })
 
 export default app
