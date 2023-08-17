@@ -1,12 +1,12 @@
 import http from 'http'
 import https from 'https'
-import app from './app.js'
 import mongoose from 'mongoose'
 import fs from 'fs'
+import { availableParallelism } from 'os'
 import cluster from 'cluster'
+import app from './app.js'
 import { createConnection } from './config/db.js'
 import { credentials } from './config/credential.js'
-import { availableParallelism } from 'os'
 
 const port = credentials.port || 8000
 const env = process.env.nodeEnv
