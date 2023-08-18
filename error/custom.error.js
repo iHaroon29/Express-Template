@@ -14,4 +14,7 @@ export class CustomError extends Error {
   static internalServerError(msg) {
     return new CustomError(500, msg, 'SERVER_ERROR')
   }
+  static externalAPIError(msg, status) {
+    return new CustomError(status, message, 'EXTERNAL_API')
+  }
 }
